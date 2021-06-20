@@ -3,10 +3,9 @@ import csv
 #import sys
 #from datetime import datetime
 
+cwd = os.getcwd()
 # Set path for files
-csvpath = os.path.join(".", "Resources", "budget_data.csv")
-#csvpath = os.path.join(".", "Resources", "PyBank.csv")
-output_path = os.path.join("analysis.txt")
-
-
-
+print(cwd)
+files = os.listdir(cwd)
+for f in files:
+	print(os.path.join(cwd, f))
