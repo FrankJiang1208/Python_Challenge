@@ -1,12 +1,12 @@
 import os
 import csv
-#import sys
-#from datetime import datetime
-
-# Set path for files
-csvpath = os.path.join(".", "Resources", "budget_data.csv")
-#csvpath = os.path.join(".", "Resources", "PyBank.csv")
-output_path = os.path.join("analysis.txt")
 
 
+cwd = os.getcwd()
+csvPath=os.path.join(cwd,"PyPoll","Resources","election_data.csv")
+with open(csvPath,newline="") as csvFile:
+	csvReader=csv.reader(csvFile,delimiter=',')
+
+	for row in csvReader:
+		print(row)
 
