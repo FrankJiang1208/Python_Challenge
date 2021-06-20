@@ -1,11 +1,12 @@
 import os
 import csv
-#import sys
-#from datetime import datetime
+
 
 cwd = os.getcwd()
-# Set path for files
-print(cwd)
-files = os.listdir(cwd)
-for f in files:
-	print(os.path.join(cwd, f))
+csvPath=os.path.join(cwd,"Resources","PyBank_Resources_budget_data.csv")
+
+with open(csvPath,newline="") as csvFile:
+	csvReader=csv.reader(csvFile,delimiter=',')
+
+	for row in csvReader:
+		print(row)
