@@ -1,7 +1,7 @@
 Financial_Analysis
 ---------------------------
 There are 86 months in the budget
-Total Revenues of $38382578.
-The average revenue change was $446309.0465116279 per month.
+Total Revenues/Loss of $38382578.
+The average revenue/loss change was $446309.0465116279 per month.
 The maximum change in revenue was $1170593 in Feb-2012
 The minimum change in revenue was $-1196225 in Sep-2013
