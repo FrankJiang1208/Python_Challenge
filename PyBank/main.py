@@ -47,7 +47,7 @@ with open(csvPath,newline="") as csvFile:
 	fileList=list(csv.reader(csvFile, delimiter=','))
 	length=len(fileList)
 	totalChange=int(fileList[1:2][0][1])-int(fileList[length-1:length][0][1])
-	aveChange=totalChange/totalMonth
+	aveChange=totalChange/(totalMonth-1)
 	
 
 #Print out on terminal
