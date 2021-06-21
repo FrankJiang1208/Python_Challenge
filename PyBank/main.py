@@ -1,6 +1,8 @@
+#Import all library needed
 import os
 import csv
 
+#Set all variable needed
 totalMonth=0
 totalProfitLoss=0
 aveProfitLoss=0
@@ -9,18 +11,27 @@ maxProfitDate=""
 maxLoss=0
 maxLossDay=""
 
-
+#Find path to csv file needed
 cwd = os.getcwd()
 csvPath=os.path.join(cwd,"PyBank","Resources","budget_data.csv")
+
+#Open file
 with open(csvPath,newline="") as csvFile:
+	#Assign reader
 	csvReader=csv.reader(csvFile,delimiter=',')
 
+	#Loop through every row
 	for row in csvReader:
+		#Make sure its not the first row
 		if (row[0]=="Date"):
 			continue
 		else:
+			#Increment month count
 			totalMonth+=1
+			#Add this month earning/loss to total
 			totalProfitLoss+=int(row[1])
+
+			#Find max and min
 			if(int(row[1])>maxProfit):
 				maxProfit=int(row[1])
 				maxProfitDate=row[0]
@@ -28,8 +39,10 @@ with open(csvPath,newline="") as csvFile:
 				maxLoss=int(row[1])
 				maxLossDate=row[0]
 	
-	
+	#Calculate average
 	aveProfitLoss=totalProfitLoss/totalMonth
+
+#Print out on terminal
 print("Financial_Analysis\n")
 print("---------------------------\n")
 print("There are "+ str(totalMonth)+" months in the budget\n")
@@ -40,7 +53,7 @@ print("The minimum change in revenue was $"+str(maxLoss)+" in "+maxLossDate+"\n"
 
 
 
-
+#Write on a text file
 txtPath=os.path.join(cwd,"PyBank","Analysis","analysis.txt")
 txtFile=open(txtPath,"w")
 txtFile.write("Financial_Analysis\n")
