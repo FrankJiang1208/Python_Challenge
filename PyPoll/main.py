@@ -21,7 +21,7 @@ with open(csvPath,newline="") as csvFile:
 		#Check if the name on the row is in the candidates name list, if not add it it.
 		if (name not in candidates):
 			candidates.append(name)
-			candidatesVote.append(0)
+			candidatesVote.append(1)
 		#If it is, then just add 1 more vote under the candidate
 		else:
 			position=candidates.index(name)
