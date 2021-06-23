@@ -6,13 +6,12 @@ from csv import reader
 #Set all variable needed
 totalMonth=0
 totalProfitLoss=0
-aveProfitLoss=0
-maxProfit=0
 maxProfitDate=""
-maxLoss=0
 maxLossDay=""
 totalChange=0
 aveChange=0
+maxIncrease=0
+maxDecrease=0
 
 #Find path to csv file needed
 cwd = os.getcwd()
@@ -31,14 +30,6 @@ with open(csvPath,newline="") as csvFile:
 		#Add this month earning/loss to total
 		totalProfitLoss+=int(row[1])
 			
-		#Find max and min
-		if(int(row[1])>maxProfit):
-			maxProfit=int(row[1])
-			maxProfitDate=row[0]
-		elif(int(row[1])<maxLoss):
-			maxLoss=int(row[1])
-			maxLossDate=row[0]
-	aveProfitLoss=totalProfitLoss/totalMonth
 
 #Calculate average
 with open(csvPath,newline="") as csvFile:
@@ -46,8 +37,21 @@ with open(csvPath,newline="") as csvFile:
 	csvReader=csv.reader(csvFile,delimiter=',')
 	fileList=list(csv.reader(csvFile, delimiter=','))
 	length=len(fileList)
-	totalChange=int(fileList[1:2][0][1])-int(fileList[length-1:length][0][1])
+	totalChange=int(fileList[length-1:length][0][1])-int(fileList[1:2][0][1])
+
+	#Find average
 	aveChange=totalChange/(totalMonth-1)
+
+	#Find max and min
+	for i in range(0,length-2):
+		change=int(fileList[i+2:i+3][0][1])-int(fileList[i+1:i+2][0][1])
+		if(maxIncrease<change):
+			maxIncrease=change
+			maxProfitDate=fileList[i+2:i+3][0][0]
+		if(maxDecrease>change):
+			maxDecrease=change
+			maxLossDate=fileList[i+2:i+3][0][0]
+
 	
 
 #Print out on terminal
@@ -56,8 +60,8 @@ print("---------------------------\n")
 print("There are "+ str(totalMonth)+" months in the budget\n")
 print("Total Revenues/Loss of $"+str(totalProfitLoss)+".\n" )
 print("The average revenue/loss change was $"+str(aveChange)+" per month.\n")
-print("The maximum change in revenue was $"+str(maxProfit)+" in "+maxProfitDate+"\n")
-print("The minimum change in revenue was $"+str(maxLoss)+" in "+maxLossDate+"\n")
+print("The maximum change in revenue was $"+str(maxIncrease)+" in "+maxProfitDate+"\n")
+print("The minimum change in revenue was $"+str(maxDecrease)+" in "+maxLossDate+"\n")
 
 
 
@@ -69,6 +73,6 @@ txtFile.write("---------------------------\n")
 txtFile.write("There are "+ str(totalMonth)+" months in the budget\n")
 txtFile.write("Total Revenues/Loss of $"+str(totalProfitLoss)+".\n" )
 txtFile.write("The average revenue/loss change was $"+str(aveChange)+" per month.\n")
-txtFile.write("The maximum change in revenue was $"+str(maxProfit)+" in "+maxProfitDate+"\n")
-txtFile.write("The minimum change in revenue was $"+str(maxLoss)+" in "+maxLossDate+"\n")
+txtFile.write("The maximum change in revenue was $"+str(maxIncrease)+" in "+maxProfitDate+"\n")
+txtFile.write("The minimum change in revenue was $"+str(maxDecrease)+" in "+maxLossDate+"\n")
 txtFile.close()
