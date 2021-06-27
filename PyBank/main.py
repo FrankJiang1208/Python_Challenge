@@ -31,11 +31,12 @@ with open(csvPath,newline="") as csvFile:
 		totalProfitLoss+=int(row[1])
 			
 
-#Calculate average
+#Calculate average, max and min
 with open(csvPath,newline="") as csvFile:
 	#Assign reader
 	csvReader=csv.reader(csvFile,delimiter=',')
-	fileList=list(csv.reader(csvFile, delimiter=','))
+	#Turn into a list
+	fileList=list(csvReader)
 	length=len(fileList)
 	totalChange=int(fileList[length-1:length][0][1])-int(fileList[1:2][0][1])
 
